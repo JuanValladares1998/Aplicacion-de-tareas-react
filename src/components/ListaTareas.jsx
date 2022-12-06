@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -7,19 +7,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Box from "@mui/material/Box";
 import Switch from "@mui/material/Switch";
 
-const ListaTareas = () => {
-  const [listaTareas, setListaTareas] = useState([]);
-
-  const getData = () => {
-    return localStorage.getItem("lista-tareas");
-  };
-
-  useEffect(() => {
-    // localStorage.setItem("lista-tareas", JSON.stringify(tareas));
-    let tareas = JSON.parse(getData());
-    setListaTareas(tareas);
-  }, []);
-
+const ListaTareas = ({ listaTareas }) => {
   const tareaTerminada = (id) => {
     // let tareaEliminada = listaTareas.filter((tarea) => tarea.id !== id);
     // let tareaCambiada = listaTareas.filter((tarea) => tarea.id === id);
