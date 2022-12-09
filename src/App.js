@@ -12,14 +12,17 @@ function App() {
   };
 
   useEffect(() => {
-    // localStorage.setItem("lista-tareas", JSON.stringify(tareas));
     let tareas = JSON.parse(getData());
-    setListaTareas(tareas);
+    if (tareas) {
+      setListaTareas(tareas);
+    }
   }, []);
 
-  const agregarTarea = (tarea) => {
-    setListaTareas([...listaTareas, tarea]);
-  };
+  useEffect(() => {
+    if (listaTareas) {
+      localStorage.setItem("lista-tareas", JSON.stringify(listaTareas));
+    }
+  }, [listaTareas]);
 
   return (
     <div className="App">
@@ -27,7 +30,10 @@ function App() {
       <div>
         <h2>Lista de tareas</h2>
         <div>
-          <InputTareas agregarTarea={agregarTarea} />
+          <InputTareas
+            setListaTareas={setListaTareas}
+            listaTareas={listaTareas}
+          />
           <ListaTareas listaTareas={listaTareas} />
         </div>
       </div>

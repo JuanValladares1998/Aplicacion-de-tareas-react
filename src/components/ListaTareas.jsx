@@ -25,8 +25,8 @@ const ListaTareas = ({ listaTareas }) => {
             margin: "auto",
           }}
         >
-          {listaTareas.map((tarea, key) => (
-            <Accordion key={key}>
+          {listaTareas.map((tarea) => (
+            <Accordion key={tarea.titulo}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
