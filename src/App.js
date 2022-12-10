@@ -63,7 +63,10 @@ function App() {
                 setListaTareas={setListaTareas}
                 listaTareas={listaTareas}
               />
-              <ListaTareas listaTareas={listaTareas} />
+              <ListaTareas
+                listaTareas={listaTareas}
+                setListaTareas={setListaTareas}
+              />
             </Grid>
           </Container>
         </div>
