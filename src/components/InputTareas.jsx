@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
-import { Grid } from "@mui/material";
+import { Grid, Button } from "@mui/material";
+import Error from "./Error";
 
 const InputTareas = ({ setListaTareas, listaTareas }) => {
+  const [error, setError] = useState(0);
   //Submit Formulario
   const formSubmit = (formulario) => {
+    setError(0);
     formulario.preventDefault();
     if (formulario.target.titulo.value && formulario.target.descripcion.value) {
       const tarea = {
@@ -22,47 +25,50 @@ const InputTareas = ({ setListaTareas, listaTareas }) => {
         formulario.target.titulo.value = "";
         formulario.target.descripcion.value = "";
       } else {
-        alert("La tarea ya existe");
+        //Tarea ya existe
+        setError(1);
       }
     } else {
-      alert("Debes completar todos los campos");
+      //Debes completar todos los campos
+      setError(2);
     }
   };
 
   return (
-    <form on onSubmit={formSubmit}>
+    <form onSubmit={formSubmit}>
       <Grid
         container
         spacing={2}
         sx={{
-          width: 500,
           margin: "auto",
         }}
+        justifyContent="center"
       >
-        <Grid item xs={8}>
+        <Grid item xs={12}>
           <TextField
-            sx={{
-              width: 400,
-            }}
             type="text"
             name="titulo"
             placeholder="Ingrese un titulo"
+            fullWidth
           ></TextField>
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={12}>
           <TextField
-            sx={{
-              width: 400,
-            }}
             type="text"
             name="descripcion"
             placeholder="Ingrese una tarea"
             multiline
-            rows={4}
+            rows={3}
+            fullWidth
           ></TextField>
         </Grid>
-        <Grid item xs={8}>
-          <button>Agregar Tarea</button>
+        <Grid item xs={12}>
+          <Button variant="contained" type="submit">
+            Agregar Tarea
+          </Button>
+        </Grid>
+        <Grid item xs={12}>
+          <Error error={error} />
         </Grid>
       </Grid>
     </form>
