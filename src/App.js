@@ -3,7 +3,7 @@ import "./App.scss";
 import InputTareas from "./components/InputTareas";
 import ListaTareas from "./components/ListaTareas.jsx";
 import ListAltIcon from "@mui/icons-material/ListAlt";
-import { AppBar, CssBaseline, Grid, Toolbar, Typography } from "@mui/material";
+import { AppBar, Toolbar, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 
 function App() {
@@ -29,7 +29,6 @@ function App() {
 
   return (
     <>
-      <CssBaseline />
       <AppBar position="relative">
         <Toolbar>
           <ListAltIcon fontSize="large" sx={{ marginRight: "10px" }} />
@@ -37,39 +36,35 @@ function App() {
         </Toolbar>
       </AppBar>
       <main>
-        <div>
-          <Container maxWidth="sm">
-            <Typography
-              variant="h2"
-              align="center"
-              color="textPrimary"
-              gutterBottom
-              paddingTop={5}
-            >
-              Lista de Tareas
-            </Typography>
-            <Typography
-              variant="h6"
-              align="center"
-              color="textPrimary"
-              gutterBottom
-              paddingBottom={5}
-            >
-              Hola y bienvendio a mi aplicación de Tareas. Agrega y revisa todas
-              las tareas que requieras.
-            </Typography>
-            <Grid container spacing={2} justify="center" maxWidth="sm">
-              <InputTareas
-                setListaTareas={setListaTareas}
-                listaTareas={listaTareas}
-              />
-              <ListaTareas
-                listaTareas={listaTareas}
-                setListaTareas={setListaTareas}
-              />
-            </Grid>
-          </Container>
-        </div>
+        <Container maxWidth="sm" sx={{paddingBottom: 10}}>
+          <Typography
+            variant="h2"
+            align="center"
+            color="textPrimary"
+            gutterBottom
+            paddingTop={5}
+          >
+            Lista de Tareas
+          </Typography>
+          <Typography
+            variant="h6"
+            align="center"
+            color="textPrimary"
+            gutterBottom
+            paddingBottom={5}
+          >
+            Hola y bienvendio a mi aplicación de Tareas. Agrega y revisa todas
+            las tareas que requieras.
+          </Typography>
+          <InputTareas
+            setListaTareas={setListaTareas}
+            listaTareas={listaTareas}
+          />
+          <ListaTareas
+            listaTareas={listaTareas}
+            setListaTareas={setListaTareas}
+          />
+        </Container>
       </main>
     </>
   );

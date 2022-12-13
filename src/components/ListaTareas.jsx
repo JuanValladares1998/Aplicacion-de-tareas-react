@@ -4,15 +4,31 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Switch from "@mui/material/Switch";
-import { Button, FormControlLabel, Grid } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import Checkbox from "@mui/material/Checkbox";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import Box from "@mui/material/Box/Box";
+import Paper from "@mui/material/Paper";
+import IconButton from "@mui/material/IconButton";
+
+const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 const ListaTareas = ({ listaTareas, setListaTareas }) => {
   const tareaEstadoCambiado = (nombre) => {
     setListaTareas(
       listaTareas.map((tarea) =>
         tarea.titulo === nombre ? { ...tarea, estado: !tarea.estado } : tarea
+      )
+    );
+  };
+
+  const tareaImportanteCambiado = (nombre) => {
+    setListaTareas(
+      listaTareas.map((tarea) =>
+        tarea.titulo === nombre
+          ? { ...tarea, importante: !tarea.importante }
+          : tarea
       )
     );
   };
@@ -25,44 +41,67 @@ const ListaTareas = ({ listaTareas, setListaTareas }) => {
     return <h2>loading</h2>;
   } else {
     return (
-      <Grid container spacing={2} direction="column" paddingTop={5} fullWidth>
+      <Box fullWidth>
         {listaTareas.map((tarea) => (
-          <Grid item fullWidth key={tarea.titulo}>
-            <Accordion>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-                fullWidth
+          <Box fullWidth key={tarea.titulo} sx={{marginTop: 4}}>
+            <Paper variant="outlined">
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
               >
-                <FormControlLabel
-                  control={
-                    <Switch
-                      checked={tarea.estado}
-                      onChange={() => {
-                        tareaEstadoCambiado(tarea.titulo);
-                      }}
-                    />
-                  }
-                />
-                <Typography>{tarea.titulo}</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography marginBottom={5}>{tarea.descripcion}</Typography>
-                <Button
-                  variant="outlined"
-                  startIcon={<DeleteIcon />}
+                <Box sx={{ width: 100 }}>
+                  <Checkbox
+                    checked={tarea.estado}
+                    sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
+                    onChange={() => {
+                      tareaEstadoCambiado(tarea.titulo);
+                    }}
+                  />
+                  <Checkbox
+                    {...label}
+                    checked={tarea.importante}
+                    icon={<BookmarkBorderIcon />}
+                    checkedIcon={<BookmarkIcon />}
+                    onChange={() => {
+                      tareaImportanteCambiado(tarea.titulo);
+                    }}
+                  />
+                </Box>
+                <IconButton
+                  aria-label="delete"
+                  size="large"
                   onClick={() => {
                     eliminarTarea(tarea.titulo);
                   }}
                 >
-                  Delete
-                </Button>
-              </AccordionDetails>
-            </Accordion>
-          </Grid>
+                  <DeleteIcon fontSize="inherit" />
+                </IconButton>
+              </Box>
+              <Box>
+                <Typography sx={{ marginLeft: "1rem", marginBottom: "1rem" }}>
+                  {tarea.titulo}
+                </Typography>
+              </Box>
+              <Accordion>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                  fullWidth
+                >
+                  <Typography variant="caption">Descrición...</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <Typography marginBottom={5}>{tarea.descripcion}</Typography>
+                </AccordionDetails>
+              </Accordion>
+            </Paper>
+          </Box>
         ))}
-      </Grid>
+      </Box>
     );
   }
 };

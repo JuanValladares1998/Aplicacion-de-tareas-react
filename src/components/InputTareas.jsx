@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
-import { Grid, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import Error from "./Error";
+import Box from "@mui/material/Box/Box";
 
 const InputTareas = ({ setListaTareas, listaTareas }) => {
   const [error, setError] = useState(0);
@@ -14,6 +15,7 @@ const InputTareas = ({ setListaTareas, listaTareas }) => {
         estado: false,
         titulo: formulario.target.titulo.value,
         descripcion: formulario.target.descripcion.value,
+        importante: false,
       };
 
       if (
@@ -36,41 +38,38 @@ const InputTareas = ({ setListaTareas, listaTareas }) => {
 
   return (
     <form onSubmit={formSubmit}>
-      <Grid
+      <Box
         container
         spacing={2}
         sx={{
           margin: "auto",
         }}
-        justifyContent="center"
+        justifyContent="left"
       >
-        <Grid item xs={12}>
-          <TextField
-            type="text"
-            name="titulo"
-            placeholder="Ingrese un titulo"
-            fullWidth
-          ></TextField>
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            type="text"
-            name="descripcion"
-            placeholder="Ingrese una tarea"
-            multiline
-            rows={3}
-            fullWidth
-          ></TextField>
-        </Grid>
-        <Grid item xs={12}>
-          <Button variant="contained" type="submit">
-            Agregar Tarea
-          </Button>
-        </Grid>
-        <Grid item xs={12}>
-          <Error error={error} />
-        </Grid>
-      </Grid>
+        <TextField
+          type="text"
+          name="titulo"
+          placeholder="Ingrese un titulo"
+          fullWidth
+          sx={{ marginBottom: 3 }}
+        ></TextField>
+
+        <TextField
+          type="text"
+          name="descripcion"
+          placeholder="Ingrese una tarea"
+          multiline
+          rows={3}
+          fullWidth
+          sx={{ marginBottom: 3 }}
+        ></TextField>
+
+        <Button sx={{marginBottom: 2}} variant="contained" type="submit">
+          Agregar Tarea
+        </Button>
+
+        <Error error={error}/>
+      </Box>
     </form>
   );
 };
