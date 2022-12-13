@@ -10,6 +10,7 @@ import Filtro from "./components/Filtro";
 
 function App() {
   const [listaTareas, setListaTareas] = useState([]);
+  const [listaFiltrada, setlistaFiltrada] = useState([]);
 
   //Leer localStorage
   const getData = () => {
@@ -27,10 +28,13 @@ function App() {
     if (listaTareas) {
       localStorage.setItem("lista-tareas", JSON.stringify(listaTareas));
     }
+    setlistaFiltrada(listaTareas);
   }, [listaTareas]);
 
   return (
-    <UserContext.Provider value={{ listaTareas, setListaTareas }}>
+    <UserContext.Provider
+      value={{ listaTareas, setListaTareas, listaFiltrada, setlistaFiltrada }}
+    >
       <AppBar position="relative">
         <Toolbar>
           <ListAltIcon fontSize="large" sx={{ marginRight: "10px" }} />

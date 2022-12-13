@@ -17,7 +17,9 @@ import { useContext } from "react";
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 const ListaTareas = () => {
-  const { listaTareas, setListaTareas } = useContext(UserContext);
+  const { listaTareas, setListaTareas, listaFiltrada } =
+    useContext(UserContext);
+
   const tareaEstadoCambiado = (nombre) => {
     setListaTareas(
       listaTareas.map((tarea) =>
@@ -45,7 +47,7 @@ const ListaTareas = () => {
   } else {
     return (
       <Box fullWidth>
-        {listaTareas.map((tarea) => (
+        {listaFiltrada.map((tarea) => (
           <Box fullWidth key={tarea.titulo} sx={{ marginTop: 4 }}>
             <Paper variant="outlined">
               <Box
