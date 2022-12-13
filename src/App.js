@@ -5,6 +5,8 @@ import ListaTareas from "./components/ListaTareas.jsx";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import { AppBar, Toolbar, Typography } from "@mui/material";
 import { Container } from "@mui/system";
+import { UserContext } from "./context/UserContext";
+import Filtro from "./components/Filtro";
 
 function App() {
   const [listaTareas, setListaTareas] = useState([]);
@@ -28,7 +30,7 @@ function App() {
   }, [listaTareas]);
 
   return (
-    <>
+    <UserContext.Provider value={{ listaTareas, setListaTareas }}>
       <AppBar position="relative">
         <Toolbar>
           <ListAltIcon fontSize="large" sx={{ marginRight: "10px" }} />
@@ -36,7 +38,7 @@ function App() {
         </Toolbar>
       </AppBar>
       <main>
-        <Container maxWidth="sm" sx={{paddingBottom: 10}}>
+        <Container maxWidth="sm" sx={{ paddingBottom: 10 }}>
           <Typography
             variant="h2"
             align="center"
@@ -56,17 +58,12 @@ function App() {
             Hola y bienvendio a mi aplicación de Tareas. Agrega y revisa todas
             las tareas que requieras.
           </Typography>
-          <InputTareas
-            setListaTareas={setListaTareas}
-            listaTareas={listaTareas}
-          />
-          <ListaTareas
-            listaTareas={listaTareas}
-            setListaTareas={setListaTareas}
-          />
+          <InputTareas />
+          <Filtro />
+          <ListaTareas />
         </Container>
       </main>
-    </>
+    </UserContext.Provider>
   );
 }
 

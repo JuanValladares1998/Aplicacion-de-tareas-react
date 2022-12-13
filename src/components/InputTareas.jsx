@@ -3,8 +3,11 @@ import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import Error from "./Error";
 import Box from "@mui/material/Box/Box";
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
 
-const InputTareas = ({ setListaTareas, listaTareas }) => {
+const InputTareas = () => {
+  const { setListaTareas, listaTareas } = useContext(UserContext);
   const [error, setError] = useState(0);
   //Submit Formulario
   const formSubmit = (formulario) => {
@@ -64,11 +67,11 @@ const InputTareas = ({ setListaTareas, listaTareas }) => {
           sx={{ marginBottom: 3 }}
         ></TextField>
 
-        <Button sx={{marginBottom: 2}} variant="contained" type="submit">
+        <Button sx={{ marginBottom: 2 }} variant="contained" type="submit">
           Agregar Tarea
         </Button>
 
-        <Error error={error}/>
+        <Error error={error} />
       </Box>
     </form>
   );

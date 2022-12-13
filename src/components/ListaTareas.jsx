@@ -11,10 +11,13 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 import Box from "@mui/material/Box/Box";
 import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
+import { UserContext } from "../context/UserContext";
+import { useContext } from "react";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
-const ListaTareas = ({ listaTareas, setListaTareas }) => {
+const ListaTareas = () => {
+  const { listaTareas, setListaTareas } = useContext(UserContext);
   const tareaEstadoCambiado = (nombre) => {
     setListaTareas(
       listaTareas.map((tarea) =>
@@ -43,7 +46,7 @@ const ListaTareas = ({ listaTareas, setListaTareas }) => {
     return (
       <Box fullWidth>
         {listaTareas.map((tarea) => (
-          <Box fullWidth key={tarea.titulo} sx={{marginTop: 4}}>
+          <Box fullWidth key={tarea.titulo} sx={{ marginTop: 4 }}>
             <Paper variant="outlined">
               <Box
                 sx={{
@@ -92,7 +95,7 @@ const ListaTareas = ({ listaTareas, setListaTareas }) => {
                   id="panel1a-header"
                   fullWidth
                 >
-                  <Typography variant="caption">Descrición...</Typography>
+                  <Typography variant="caption">Descripción...</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <Typography marginBottom={5}>{tarea.descripcion}</Typography>
