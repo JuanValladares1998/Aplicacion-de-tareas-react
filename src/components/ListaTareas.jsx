@@ -97,7 +97,10 @@ const ListaTareas = () => {
                   id="panel1a-header"
                   fullWidth
                 >
-                  <Typography variant="caption">Descripción...</Typography>
+                  <Typography variant="caption">
+                    Fecha de inicio: <b>{tarea.fechaInico}</b> / Fecha de
+                    finalizado: <b>{tarea.fechaFin}</b>
+                  </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <Typography marginBottom={5}>{tarea.descripcion}</Typography>

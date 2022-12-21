@@ -44,8 +44,8 @@ function App() {
       </AppBar>
       <main>
         <Container maxWidth="xl" sx={{ paddingBottom: 10 }}>
-          <Grid container spacing={10}>
-            <Grid item xs={12} md={6}>
+          <Grid container spacing={16}>
+            <Grid item xs={12} lg={6}>
               <Typography
                 variant="h2"
                 align="center"
@@ -67,7 +67,7 @@ function App() {
               </Typography>
               <InputTareas />
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} lg={6}>
               <Card sx={{ padding: "1rem", marginTop: "2rem" }}>
                 <Typography variant="button" display="block" gutterBottom>
                   Filtros
