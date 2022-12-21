@@ -3,7 +3,7 @@ import "./App.scss";
 import InputTareas from "./components/InputTareas";
 import ListaTareas from "./components/ListaTareas.jsx";
 import ListAltIcon from "@mui/icons-material/ListAlt";
-import { AppBar, Toolbar, Typography } from "@mui/material";
+import { AppBar, Grid, Toolbar, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import { UserContext } from "./context/UserContext";
 import Filtro from "./components/Filtro";
@@ -42,29 +42,43 @@ function App() {
         </Toolbar>
       </AppBar>
       <main>
-        <Container maxWidth="sm" sx={{ paddingBottom: 10 }}>
-          <Typography
-            variant="h2"
-            align="center"
-            color="textPrimary"
-            gutterBottom
-            paddingTop={5}
-          >
-            Lista de Tareas
-          </Typography>
-          <Typography
-            variant="h6"
-            align="center"
-            color="textPrimary"
-            gutterBottom
-            paddingBottom={5}
-          >
-            Hola y bienvendio a mi aplicación de Tareas. Agrega y revisa todas
-            las tareas que requieras.
-          </Typography>
-          <InputTareas />
-          <Filtro />
-          <ListaTareas />
+        <Container maxWidth="xl" sx={{ paddingBottom: 10 }}>
+          <Grid container spacing={10}>
+            <Grid item xs={12} md={6}>
+              <Typography
+                variant="h2"
+                align="center"
+                color="textPrimary"
+                gutterBottom
+                paddingTop={5}
+              >
+                Lista de Tareas
+              </Typography>
+              <Typography
+                variant="h6"
+                align="center"
+                color="textPrimary"
+                gutterBottom
+                paddingBottom={5}
+              >
+                Hola y bienvendio a mi aplicación de Tareas. Agrega y revisa
+                todas las tareas que requieras.
+              </Typography>
+              <InputTareas />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Typography
+                variant="button"
+                display="block"
+                gutterBottom
+                marginTop={6}
+              >
+                overline text
+              </Typography>
+              <Filtro />
+              <ListaTareas />
+            </Grid>
+          </Grid>
         </Container>
       </main>
     </UserContext.Provider>
