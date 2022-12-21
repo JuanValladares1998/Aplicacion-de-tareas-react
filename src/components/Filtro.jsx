@@ -10,7 +10,8 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 const Filtro = () => {
-  const { setlistaFiltrada, listaTareas } = useContext(UserContext);
+  const { setlistaFiltrada, listaTareas, listaFiltrada } =
+    useContext(UserContext);
 
   const [filtro, setFiltro] = useState({
     completado: false,
@@ -41,7 +42,7 @@ const Filtro = () => {
     } else {
       setlistaFiltrada(listaTareas);
     }
-  }, [filtro]);
+  }, [filtro, listaTareas, setlistaFiltrada, listaFiltrada]);
 
   return (
     <FormGroup sx={{ display: "flex", flexDirection: "row" }}>
