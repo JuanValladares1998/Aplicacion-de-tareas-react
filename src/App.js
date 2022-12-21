@@ -7,6 +7,7 @@ import { AppBar, Grid, Toolbar, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import { UserContext } from "./context/UserContext";
 import Filtro from "./components/Filtro";
+import Card from "@mui/material/Card";
 
 function App() {
   const [listaTareas, setListaTareas] = useState([]);
@@ -67,15 +68,12 @@ function App() {
               <InputTareas />
             </Grid>
             <Grid item xs={12} md={6}>
-              <Typography
-                variant="button"
-                display="block"
-                gutterBottom
-                marginTop={6}
-              >
-                overline text
-              </Typography>
-              <Filtro />
+              <Card sx={{ padding: "1rem", marginTop: "2rem" }}>
+                <Typography variant="button" display="block" gutterBottom>
+                  Filtros
+                </Typography>
+                <Filtro />
+              </Card>
               <ListaTareas />
             </Grid>
           </Grid>
