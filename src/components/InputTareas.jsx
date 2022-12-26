@@ -35,7 +35,7 @@ const InputTareas = () => {
         )
       ) {
         //Tarea ya existe
-        setError(1);
+        setError(2);
       } else if (tarea.fechaInico > tarea.fechaFin) {
         //Fecha incorrecta
         setError(3);
@@ -45,6 +45,7 @@ const InputTareas = () => {
         formulario.target.descripcion.value = "";
         formulario.target.fechaInicio.value = "";
         formulario.target.fechaFin.value = "";
+        setError(1);
       }
     } else {
       //Debes completar todos los campos
