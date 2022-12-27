@@ -13,6 +13,10 @@ import Alertas from "./components/Alertas";
 function App() {
   const [listaTareas, setListaTareas] = useState([]);
   const [listaFiltrada, setlistaFiltrada] = useState([]);
+  const [listaPorHacer, setlistaPorHacer] = useState([]);
+  const [listaEnProgreso, setlistaEnProgreso] = useState([]);
+  const [listaEnRevision, setlistaEnRevision] = useState([]);
+  const [listaFinalizado, setlistaFinalizado] = useState([]);
   const [alerta, setAlerta] = useState(0);
 
   //Leer localStorage
@@ -31,7 +35,19 @@ function App() {
     if (listaTareas) {
       localStorage.setItem("lista-tareas", JSON.stringify(listaTareas));
     }
-    setlistaFiltrada(listaTareas);
+    //setlistaFiltrada(listaTareas);
+    setlistaPorHacer(
+      listaTareas.filter((tareas) => tareas.estado === "por hacer")
+    );
+    setlistaEnProgreso(
+      listaTareas.filter((tareas) => tareas.estado === "en progreso")
+    );
+    setlistaEnRevision(
+      listaTareas.filter((tareas) => tareas.estado === "en revision")
+    );
+    setlistaFinalizado(
+      listaTareas.filter((tareas) => tareas.estado === "finalizado")
+    );
   }, [listaTareas]);
 
   return (
@@ -66,7 +82,7 @@ function App() {
           <Grid container spacing={2} sx={{ marginTop: "1rem" }}>
             <Grid item xs={12} md={6} xl={3}>
               <ColumnaTareas placeHolder="POR HACER">
-                {listaTareas.map((tarea) => (
+                {listaPorHacer.map((tarea) => (
                   <TareaDisplay
                     key={tarea.titulo}
                     titulo={tarea.titulo}
@@ -79,17 +95,41 @@ function App() {
             </Grid>
             <Grid item xs={12} md={6} xl={3}>
               <ColumnaTareas placeHolder="EN PROGRESO">
-                <p>XDDDDDDDDDD</p>
+                {listaEnProgreso.map((tarea) => (
+                  <TareaDisplay
+                    key={tarea.titulo}
+                    titulo={tarea.titulo}
+                    descripcion={tarea.descripcion}
+                    fechaInicio={tarea.fechaInicio}
+                    fechaFin={tarea.fechaFin}
+                  ></TareaDisplay>
+                ))}
               </ColumnaTareas>
             </Grid>
             <Grid item xs={12} md={6} xl={3}>
               <ColumnaTareas placeHolder="EN REVISIÓN">
-                <p>XDDDDDDDDDD</p>
+                {listaEnRevision.map((tarea) => (
+                  <TareaDisplay
+                    key={tarea.titulo}
+                    titulo={tarea.titulo}
+                    descripcion={tarea.descripcion}
+                    fechaInicio={tarea.fechaInicio}
+                    fechaFin={tarea.fechaFin}
+                  ></TareaDisplay>
+                ))}
               </ColumnaTareas>
             </Grid>
             <Grid item xs={12} md={6} xl={3}>
               <ColumnaTareas placeHolder="FINALIZADO">
-                <p>XDDDDDDDDDD</p>
+                {listaFinalizado.map((tarea) => (
+                  <TareaDisplay
+                    key={tarea.titulo}
+                    titulo={tarea.titulo}
+                    descripcion={tarea.descripcion}
+                    fechaInicio={tarea.fechaInicio}
+                    fechaFin={tarea.fechaFin}
+                  ></TareaDisplay>
+                ))}
               </ColumnaTareas>
             </Grid>
           </Grid>

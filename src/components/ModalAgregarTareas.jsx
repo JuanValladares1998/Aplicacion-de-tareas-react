@@ -34,7 +34,7 @@ const ModalAgregarTareas = () => {
       formulario.target.fechaFin.value
     ) {
       const tarea = {
-        estado: false,
+        estado: "por hacer",
         titulo: formulario.target.titulo.value,
         descripcion: formulario.target.descripcion.value,
         importante: false,
