@@ -34,13 +34,27 @@ const ModalAgregarTareas = () => {
       formulario.target.fechaFin.value
     ) {
       const tarea = {
-        estado: "por hacer",
+        estado: "",
         titulo: formulario.target.titulo.value,
         descripcion: formulario.target.descripcion.value,
         importante: false,
         fechaInicio: formulario.target.fechaInicio.value,
         fechaFin: formulario.target.fechaFin.value,
       };
+
+      let fechaActual = new Date().toJSON().slice(0, 10);
+      console.log(fechaActual);
+
+      if (fechaActual < tarea.fechaInicio) {
+        tarea.estado = "por hacer";
+      } else if (
+        fechaActual > tarea.fechaInicio &&
+        fechaActual < tarea.fechaFin
+      ) {
+        tarea.estado = "en progreso";
+      } else if (fechaActual > tarea.fechaFin) {
+        tarea.estado = "finalizado";
+      }
 
       if (
         listaTareas.find(
@@ -61,7 +75,7 @@ const ModalAgregarTareas = () => {
         setAlerta(1);
         setTimeout(() => {
           handleClose();
-        }, 1500);
+        }, 1000);
       }
     } else {
       //Debes completar todos los campos

@@ -26,8 +26,27 @@ function App() {
 
   useEffect(() => {
     let tareas = JSON.parse(getData());
+
+    let fechaActual = new Date().toJSON().slice(0, 10);
+    console.log(fechaActual);
+
     if (tareas) {
-      setListaTareas(tareas);
+      setListaTareas(
+        tareas.map((tarea) => {
+          if (fechaActual < tarea.fechaInicio) {
+            return { ...tarea, estado: "por hacer" };
+          } else if (
+            fechaActual > tarea.fechaInicio &&
+            fechaActual < tarea.fechaFin
+          ) {
+            return { ...tarea, estado: "en progreso" };
+          } else if (fechaActual > tarea.fechaFin) {
+            return { ...tarea, estado: "finalizado" };
+          } else {
+            return tarea;
+          }
+        })
+      );
     }
   }, []);
 
