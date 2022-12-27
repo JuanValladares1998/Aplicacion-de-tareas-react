@@ -30,6 +30,10 @@ const TareaDisplay = ({ titulo, descripcion, fechaInicio, fechaFin }) => {
     setListaTareas(listaTareas.filter((tarea) => tarea.titulo !== nombre));
   };
 
+  const acortarTexto = (texto) => {
+    return texto.slice(0, 70);
+  };
+
   return (
     <>
       <Card
@@ -43,7 +47,7 @@ const TareaDisplay = ({ titulo, descripcion, fechaInicio, fechaFin }) => {
         onClick={handleOpen}
       >
         <Typography variant="subtitle1">{titulo}</Typography>
-        <Typography variant="body2">{descripcion}</Typography>
+        <Typography variant="body2">{acortarTexto(descripcion)}...</Typography>
         <Typography variant="caption" display="block">
           Inicio: {fechaInicio}
         </Typography>
@@ -74,25 +78,34 @@ const TareaDisplay = ({ titulo, descripcion, fechaInicio, fechaFin }) => {
             </IconButton>
           </Box>
 
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              width: "60%",
+            }}
+          >
+            <Typography variant="subtitle2" mt={2}>
+              Fecha de inicio:
+            </Typography>
+            <Typography variant="subtitle2" mt={2}>
+              {fechaInicio}
+            </Typography>
+            <Typography variant="subtitle2">Fecha de fin:</Typography>
+            <Typography variant="subtitle2">{fechaFin}</Typography>
+          </Box>
+
           <Typography variant="body1" mt={2}>
             {descripcion}
           </Typography>
-
-          <Typography variant="subtitle2" mt={2}>
-            Fecha de inicio: {fechaInicio}
-          </Typography>
-          <Typography variant="subtitle2">Fecha de fin: {fechaFin}</Typography>
-
           <Box sx={{ width: "100%", textAlign: "right" }} mt={4}>
             <Button
               variant="contained"
               sx={{ boxShadow: "none" }}
               type="submit"
+              onClick={handleClose}
             >
-              Editar
-            </Button>
-            <Button variant="text" sx={{ marginLeft: 1 }} onClick={handleClose}>
-              Cerrar
+              OK
             </Button>
           </Box>
         </Box>

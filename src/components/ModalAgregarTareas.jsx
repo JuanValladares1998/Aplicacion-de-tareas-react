@@ -49,7 +49,7 @@ const ModalAgregarTareas = () => {
       ) {
         //Tarea ya existe
         setAlerta(1);
-      } else if (tarea.fechaInico > tarea.fechaFin) {
+      } else if (tarea.fechaFin < tarea.fechaInicio) {
         //Fecha incorrecta
         setAlerta(4);
       } else {
@@ -121,6 +121,7 @@ const ModalAgregarTareas = () => {
             </Box> */}
             <Typography sx={{ mt: 2 }}>Fecha de inicio</Typography>
             <TextField
+              if="fechaInicio"
               name="fechaInicio"
               variant="outlined"
               type="date"
@@ -128,6 +129,7 @@ const ModalAgregarTareas = () => {
             />
             <Typography sx={{ mt: 2 }}>Fecha de Fin</Typography>
             <TextField
+              if="fechaFin"
               name="fechaFin"
               variant="outlined"
               type="date"
