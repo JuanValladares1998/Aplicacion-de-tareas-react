@@ -6,7 +6,11 @@ const ColumnaTareas = ({ placeHolder, children, icon }) => {
   return (
     <Card sx={{ height: { xs: "auto", md: "36rem" } }}>
       <Card
-        sx={{ padding: "1rem", display: "flex", alignItems: "end", gap: 1 }}
+        sx={{
+          padding: "1rem",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
       >
         {placeHolder}
         {icon}

@@ -62,7 +62,7 @@ const ModalAgregarTareas = () => {
         )
       ) {
         //Tarea ya existe
-        setAlerta(1);
+        setAlerta(2);
       } else if (tarea.fechaFin < tarea.fechaInicio) {
         //Fecha incorrecta
         setAlerta(4);
