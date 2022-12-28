@@ -9,6 +9,10 @@ import ColumnaTareas from "./components/ColumnaTareas";
 import ModalAgregarTareas from "./components/ModalAgregarTareas";
 import TareaDisplay from "./components/TareaDisplay";
 import Alertas from "./components/Alertas";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import DateRangeIcon from "@mui/icons-material/DateRange";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import DoneOutlineOutlinedIcon from "@mui/icons-material/DoneOutlineOutlined";
 
 function App() {
   const [listaTareas, setListaTareas] = useState([]);
@@ -100,7 +104,10 @@ function App() {
           <SerachBar />
           <Grid container spacing={2} sx={{ marginTop: "1rem" }}>
             <Grid item xs={12} md={6} xl={3}>
-              <ColumnaTareas placeHolder="POR HACER">
+              <ColumnaTareas
+                placeHolder="POR HACER"
+                icon={<DateRangeIcon sx={{ color: "gray" }} />}
+              >
                 {listaPorHacer.map((tarea) => (
                   <TareaDisplay
                     key={tarea.titulo}
@@ -113,7 +120,10 @@ function App() {
               </ColumnaTareas>
             </Grid>
             <Grid item xs={12} md={6} xl={3}>
-              <ColumnaTareas placeHolder="EN PROGRESO">
+              <ColumnaTareas
+                placeHolder="EN PROGRESO"
+                icon={<AccessTimeIcon color="primary" />}
+              >
                 {listaEnProgreso.map((tarea) => (
                   <TareaDisplay
                     key={tarea.titulo}
@@ -126,7 +136,10 @@ function App() {
               </ColumnaTareas>
             </Grid>
             <Grid item xs={12} md={6} xl={3}>
-              <ColumnaTareas placeHolder="EN REVISIÓN">
+              <ColumnaTareas
+                placeHolder="EN REVISIÓN"
+                icon={<VisibilityOutlinedIcon sx={{ color: "orange" }} />}
+              >
                 {listaEnRevision.map((tarea) => (
                   <TareaDisplay
                     key={tarea.titulo}
@@ -139,7 +152,10 @@ function App() {
               </ColumnaTareas>
             </Grid>
             <Grid item xs={12} md={6} xl={3}>
-              <ColumnaTareas placeHolder="FINALIZADO">
+              <ColumnaTareas
+                placeHolder="FINALIZADO"
+                icon={<DoneOutlineOutlinedIcon sx={{ color: "green" }} />}
+              >
                 {listaFinalizado.map((tarea) => (
                   <TareaDisplay
                     key={tarea.titulo}
