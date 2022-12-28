@@ -115,6 +115,7 @@ function App() {
                     descripcion={tarea.descripcion}
                     fechaInicio={tarea.fechaInicio}
                     fechaFin={tarea.fechaFin}
+                    estado={tarea.estado}
                   ></TareaDisplay>
                 ))}
               </ColumnaTareas>
@@ -131,6 +132,7 @@ function App() {
                     descripcion={tarea.descripcion}
                     fechaInicio={tarea.fechaInicio}
                     fechaFin={tarea.fechaFin}
+                    estado={tarea.estado}
                   ></TareaDisplay>
                 ))}
               </ColumnaTareas>
@@ -147,6 +149,7 @@ function App() {
                     descripcion={tarea.descripcion}
                     fechaInicio={tarea.fechaInicio}
                     fechaFin={tarea.fechaFin}
+                    estado={tarea.estado}
                   ></TareaDisplay>
                 ))}
               </ColumnaTareas>
@@ -163,6 +166,7 @@ function App() {
                     descripcion={tarea.descripcion}
                     fechaInicio={tarea.fechaInicio}
                     fechaFin={tarea.fechaFin}
+                    estado={tarea.estado}
                   ></TareaDisplay>
                 ))}
               </ColumnaTareas>

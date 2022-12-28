@@ -2,10 +2,11 @@ import React, { useContext, useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { Button, Card } from "@mui/material";
+import { Button, Card, Tooltip } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { UserContext } from "../context/UserContext";
+import DoneOutlineOutlinedIcon from "@mui/icons-material/DoneOutlineOutlined";
 
 const style = {
   position: "absolute",
@@ -19,19 +20,37 @@ const style = {
   width: { xs: "90%", sm: "32rem" },
 };
 
-const TareaDisplay = ({ titulo, descripcion, fechaInicio, fechaFin }) => {
+const TareaDisplay = ({
+  titulo,
+  descripcion,
+  fechaInicio,
+  fechaFin,
+  estado,
+}) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const { setListaTareas, listaTareas } = useContext(UserContext);
 
+  const tareaEstadoCambiado = (nombre) => {
+    setListaTareas(
+      listaTareas.map((tarea) =>
+        tarea.titulo === nombre ? { ...tarea, estado: "finalizado" } : tarea
+      )
+    );
+  };
+
   const eliminarTarea = (nombre) => {
     setListaTareas(listaTareas.filter((tarea) => tarea.titulo !== nombre));
   };
 
   const acortarTexto = (texto) => {
-    return texto.slice(0, 70);
+    if (texto.length > 70) {
+      return texto.slice(0, 70) + "...";
+    } else {
+      return texto;
+    }
   };
 
   return (
@@ -47,7 +66,7 @@ const TareaDisplay = ({ titulo, descripcion, fechaInicio, fechaFin }) => {
         onClick={handleOpen}
       >
         <Typography variant="subtitle1">{titulo}</Typography>
-        <Typography variant="body2">{acortarTexto(descripcion)}...</Typography>
+        <Typography variant="body2">{acortarTexto(descripcion)}</Typography>
         <Typography variant="caption" display="block">
           Inicio: {fechaInicio}
         </Typography>
@@ -67,15 +86,32 @@ const TareaDisplay = ({ titulo, descripcion, fechaInicio, fechaFin }) => {
             <Typography variant="h5" component="h2">
               {titulo}
             </Typography>
-            <IconButton
-              aria-label="delete"
-              size="large"
-              onClick={() => {
-                eliminarTarea(titulo);
-              }}
-            >
-              <DeleteIcon fontSize="inherit" />
-            </IconButton>
+            <Box sx={{ display: "flex", gap: 1 }}>
+              <Tooltip title="Finalizar">
+                <IconButton
+                  aria-label="delete"
+                  size="large"
+                  onClick={() => {
+                    tareaEstadoCambiado(titulo);
+                  }}
+                  sx={{ padding: 0 }}
+                >
+                  <DoneOutlineOutlinedIcon fontSize="inherit" />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Eliminar">
+                <IconButton
+                  aria-label="delete"
+                  size="large"
+                  onClick={() => {
+                    eliminarTarea(titulo);
+                  }}
+                  sx={{ padding: 0 }}
+                >
+                  <DeleteIcon fontSize="inherit" />
+                </IconButton>
+              </Tooltip>
+            </Box>
           </Box>
 
           <Box
