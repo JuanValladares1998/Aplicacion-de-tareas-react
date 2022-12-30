@@ -96,7 +96,13 @@ const TareaDisplay = ({
                   }}
                   sx={{ padding: 0 }}
                 >
-                  <DoneOutlineOutlinedIcon fontSize="inherit" />
+                  <DoneOutlineOutlinedIcon
+                    sx={
+                      estado === "finalizado"
+                        ? { color: "green" }
+                        : { color: "inherit" }
+                    }
+                  />
                 </IconButton>
               </Tooltip>
               <Tooltip title="Eliminar">

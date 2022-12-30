@@ -45,7 +45,7 @@ function App() {
           ) {
             return { ...tarea, estado: "en progreso" };
           } else if (fechaActual > tarea.fechaFin) {
-            return { ...tarea, estado: "finalizado" };
+            return { ...tarea, estado: "en revision" };
           } else {
             return tarea;
           }

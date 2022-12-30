@@ -53,7 +53,7 @@ const ModalAgregarTareas = () => {
       ) {
         tarea.estado = "en progreso";
       } else if (fechaActual > tarea.fechaFin) {
-        tarea.estado = "finalizado";
+        tarea.estado = "en revision";
       }
 
       if (
