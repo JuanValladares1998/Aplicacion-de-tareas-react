@@ -20,7 +20,7 @@ const ColumnaTareas = ({ placeHolder, children, icon }) => {
           margin: "1rem .3rem",
           overflow: "auto",
           height: { xs: "auto", md: "30rem" },
-          maxHeight: "30rem",
+          maxHeight: { xs: "15rem", md: "30rem" },
         }}
       >
         {children}
