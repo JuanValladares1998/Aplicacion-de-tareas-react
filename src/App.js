@@ -22,6 +22,7 @@ function App() {
   const [listaEnRevision, setlistaEnRevision] = useState([]);
   const [listaFinalizado, setlistaFinalizado] = useState([]);
   const [alerta, setAlerta] = useState(0);
+  const [busqueda, setBusqueda] = useState([]);
 
   //Leer localStorage
   const getData = () => {
@@ -55,6 +56,35 @@ function App() {
   }, []);
 
   useEffect(() => {
+    setlistaPorHacer(
+      listaTareas.filter(
+        (tareas) =>
+          tareas.estado === "por hacer" && tareas.titulo.indexOf(busqueda) > -1
+      )
+    );
+    setlistaEnProgreso(
+      listaTareas.filter(
+        (tareas) =>
+          tareas.estado === "en progreso" &&
+          tareas.titulo.indexOf(busqueda) > -1
+      )
+    );
+    setlistaEnRevision(
+      listaTareas.filter(
+        (tareas) =>
+          tareas.estado === "en revision" &&
+          tareas.titulo.indexOf(busqueda) > -1
+      )
+    );
+    setlistaFinalizado(
+      listaTareas.filter(
+        (tareas) =>
+          tareas.estado === "finalizado" && tareas.titulo.indexOf(busqueda) > -1
+      )
+    );
+  }, [busqueda, listaTareas]);
+
+  useEffect(() => {
     if (listaTareas) {
       localStorage.setItem("lista-tareas", JSON.stringify(listaTareas));
     }
@@ -82,6 +112,8 @@ function App() {
         setlistaFiltrada,
         alerta,
         setAlerta,
+        busqueda,
+        setBusqueda,
       }}
     >
       <AppBar position="relative">

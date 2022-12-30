@@ -1,12 +1,23 @@
 import { Box, IconButton, InputBase } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { UserContext } from "../context/UserContext";
 
 const SerachBar = () => {
+  const { busqueda, setBusqueda } = useContext(UserContext);
+
   const formSubmit = (formulario) => {
     formulario.preventDefault();
+    setBusqueda(formulario.target.nombre.value);
   };
+
+  const cambioBarraDeBusqueda = (evento) => {
+    if (evento.target.value === "") {
+      setBusqueda("");
+    }
+  };
+
   const SearchBar = styled(Box)({
     backgroundColor: "#fff",
     width: "20rem",
@@ -27,6 +38,8 @@ const SerachBar = () => {
           name="nombre"
           placeholder="Buscar..."
           sx={{ width: "85%", margin: "auto 0" }}
+          defaultValue={busqueda}
+          onChange={cambioBarraDeBusqueda}
         />
       </form>
     </SearchBar>
