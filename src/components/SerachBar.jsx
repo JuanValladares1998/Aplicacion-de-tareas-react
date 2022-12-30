@@ -16,6 +16,7 @@ const SerachBar = () => {
     if (evento.target.value === "") {
       setBusqueda("");
     }
+    evento.target.focus();
   };
 
   const SearchBar = styled(Box)({
